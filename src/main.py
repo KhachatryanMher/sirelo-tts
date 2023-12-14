@@ -3,37 +3,37 @@ import torch
 ssml_sample = """
   <speak>
   <p>
-    When I wake up, <prosody rate="x-slow">I speak quite slowly</prosody>.
-    Then I start speaking in my regular voice,
-    <prosody pitch="x-high"> or I can speak with a higher pitch </prosody>,
-    or <prosody pitch="x-low">on the contrary, lower</prosody>.
-    Then, if I'm lucky – <prosody rate="fast">I can speak quite quickly.</prosody>
-    I can also make pauses of any length, for example, two seconds <break time="2000ms"/>.
+      Когда я просыпаюсь, <prosody rate="x-slow">я говорю довольно медленно</prosody>.
+      Потом я начинаю говорить своим обычным голосом,
+      <prosody pitch="x-high"> а могу говорить тоном выше </prosody>,
+      или <prosody pitch="x-low">наоборот, ниже</prosody>.
+      Потом, если повезет – <prosody rate="fast">я могу говорить и довольно быстро.</prosody>
+      А еще я умею делать паузы любой длины, например две секунды <break time="2000ms"/>.
+      <p>
+        Также я умею делать паузы между параграфами.
+      </p>
+      <p>
+        <s>И также я умею делать паузы между предложениями</s>
+        <s>Вот например как сейчас</s>
+      </p>
   </p>
-  <p>
-    Additionally, I can make pauses between paragraphs.
-  </p>
-  <p>
-    <s>And I can also make pauses between sentences</s>
-    <s>Like right now</s>
-  </p>
-</speak>
+  </speak>
+"""
 
-  """
-
-language = "en"
-model_id = "v3_en"
+language = "ru"
+model_id = "v3_1_ru"
 sample_rate = 48000
-speaker = "en_0"
+speaker = "xenia"
 device = torch.device("cpu")
 
-model, text = torch.hub.load(
+res = torch.hub.load(
     repo_or_dir="snakers4/silero-models",
     model="silero_tts",
     language=language,
     speaker=model_id,
 )
-model.to(device)  # gpu or cpu
+model = res[0]
+model.to(device)
 
 audio_paths = model.save_wav(text=ssml_sample, speaker=speaker, sample_rate=sample_rate)
 print(audio_paths)
