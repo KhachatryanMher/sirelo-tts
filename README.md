@@ -1,6 +1,6 @@
-## How to start
+## How to use
 
-Install dependencies - ```pip install -r requirements.txt```
+Install dependencies - ```pip install -r requirements.txt``` \
 Start - ```python3 ./src/main.py```
 
 

@@ -1,29 +1,18 @@
 import torch
 
+
 ssml_sample = """
-  <speak>
-  <p>
-      Когда я просыпаюсь, <prosody rate="x-slow">я говорю довольно медленно</prosody>.
-      Потом я начинаю говорить своим обычным голосом,
-      <prosody pitch="x-high"> а могу говорить тоном выше </prosody>,
-      или <prosody pitch="x-low">наоборот, ниже</prosody>.
-      Потом, если повезет – <prosody rate="fast">я могу говорить и довольно быстро.</prosody>
-      А еще я умею делать паузы любой длины, например две секунды <break time="2000ms"/>.
-      <p>
-        Также я умею делать паузы между параграфами.
-      </p>
-      <p>
-        <s>И также я умею делать паузы между предложениями</s>
-        <s>Вот например как сейчас</s>
-      </p>
-  </p>
-  </speak>
+  Heinrich kommt aus Paris.
+  Das ist die Hauptstadt von Frankreich. 
+  In diesem Sommer macht sie einen Sprachkurs in Freiburg. 
+  Das ist eine Universitätsstadt im Süden von Deutschland.
+  Es gefällt ihr hier sehr gut. Morgens um neun beginnt der Unterricht, um vierzehn Uhr ist er zu Ende.
 """
 
-language = "ru"
-model_id = "v3_1_ru"
+language = "de"
+model_id = "v3_de"
 sample_rate = 48000
-speaker = "xenia"
+speaker = ""
 device = torch.device("cpu")
 
 res = torch.hub.load(
@@ -35,5 +24,10 @@ res = torch.hub.load(
 model = res[0]
 model.to(device)
 
-audio_paths = model.save_wav(text=ssml_sample, speaker=speaker, sample_rate=sample_rate)
+audio_paths = model.save_wav(
+    text=ssml_sample,
+    speaker=speaker,
+    sample_rate=sample_rate,
+    audio_path="de-karlsson.wav",
+)
 print(audio_paths)
