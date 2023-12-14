@@ -2,17 +2,17 @@ import torch
 
 
 ssml_sample = """
-  Heinrich kommt aus Paris.
-  Das ist die Hauptstadt von Frankreich. 
-  In diesem Sommer macht sie einen Sprachkurs in Freiburg. 
-  Das ist eine Universitätsstadt im Süden von Deutschland.
-  Es gefällt ihr hier sehr gut. Morgens um neun beginnt der Unterricht, um vierzehn Uhr ist er zu Ende.
+  Aunque pueda parecer una afirmación un tanto restrictiva, cualquier trabajo científico y profesional no existe si no se comparte con la comunidad, 
+  desde su versión académica o desde la vertiente más profesional, ya sea de manera formal o informal. 
+  La experiencia profesional o los resultados de una investigación están completos solo cuando sus 
+  resultados y conclusiones se comparten con el objetivo del enriquecimiento mutuo a nivel individual 
+  (profesional y académico) y a nivel comunitario y social. 
 """
 
-language = "de"
-model_id = "v3_de"
+language = "es"
+model_id = "v3_es"
 sample_rate = 48000
-speaker = ""
+speaker = "es_2"
 device = torch.device("cpu")
 
 res = torch.hub.load(
@@ -28,6 +28,6 @@ audio_paths = model.save_wav(
     text=ssml_sample,
     speaker=speaker,
     sample_rate=sample_rate,
-    audio_path="de-karlsson.wav",
+    audio_path="es_2.wav",
 )
 print(audio_paths)
