@@ -2,17 +2,15 @@ import torch
 
 
 ssml_sample = """
-  Aunque pueda parecer una afirmación un tanto restrictiva, cualquier trabajo científico y profesional no existe si no se comparte con la comunidad, 
-  desde su versión académica o desde la vertiente más profesional, ya sea de manera formal o informal. 
-  La experiencia profesional o los resultados de una investigación están completos solo cuando sus 
-  resultados y conclusiones se comparten con el objetivo del enriquecimiento mutuo a nivel individual 
-  (profesional y académico) y a nivel comunitario y social. 
+  Ainsi, les salons se parent de bougies et de sapins. 
+  En général, les français optent pour des sapins en pot afin de prolonger la magie du moment.
+  L'arbre odorant est paré de guirlandes et de boules tandis qu'une étoile chatoyante est ajoutée sur la cime. 
 """
 
-language = "es"
-model_id = "v3_es"
+language = "fr"
+model_id = "v3_fr"
 sample_rate = 48000
-speaker = "es_2"
+speaker = "fr_5"
 device = torch.device("cpu")
 
 res = torch.hub.load(
@@ -28,6 +26,6 @@ audio_paths = model.save_wav(
     text=ssml_sample,
     speaker=speaker,
     sample_rate=sample_rate,
-    audio_path="es_2.wav",
+    audio_path="fr_5.wav",
 )
 print(audio_paths)
